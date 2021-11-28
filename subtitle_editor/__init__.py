@@ -74,9 +74,11 @@ class SubtitleEditor:
         file_save.write(self.blocks_to_srt(self.blocks).encode())
         file_save.close()
         return os.path.abspath(path)
-
+    
+    @property
     def webvtt_as_bytes(self):
         return self.blocks_to_webvtt(self.blocks).encode()
 
+    @property
     def srt_as_bytes(self):
         return self.blocks_to_srt(self.blocks).encode()
