@@ -7,6 +7,8 @@ class InvaildFileInput(Exception):
     def __init__(self):
         print('Input not valid or not supported !')
 
+    def __str__(self) -> str: return 'Input not valid or not supported !'
+
 class InvaidWEBVTTFile(Exception):
 
     """
@@ -15,3 +17,5 @@ class InvaidWEBVTTFile(Exception):
    
     def __init__(self):
         print("WEBVTT file is not valid!")
+
+    def __str__(self) -> str: return "WEBVTT file is not valid!"

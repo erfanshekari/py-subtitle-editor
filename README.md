@@ -1,5 +1,7 @@
 # Edit and Convert Subtitle
-this python module provide subtitle parse and edit for srt and webvtt format. you can  read, edit and convert any valid srt or webvtt file.
+this python module provide subtitle parse, edit and convert for srt and webvtt formats. you can  read, edit and convert any valid srt or webvtt file.
+
+* Support UTF-8 , ANSI encoding
 
 # Read
 
