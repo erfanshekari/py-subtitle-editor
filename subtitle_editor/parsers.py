@@ -5,9 +5,7 @@ from .io import IOHandler
 class BaseParser:
     def __init__(self, input:IOHandler):
         self.io = input
-        self.file_as_bytes = self.io.io
         self.ary = []
-
         self.base_name = self.io.basename
 
         """
@@ -20,7 +18,7 @@ class BaseParser:
         """
         self.block_id = 0
         self.expect_target = 'time' # options are, 'time', 'content'
-        for line in self.file_as_bytes:
+        for line in self.io.io:
             line_as_string = line.decode('utf-8')
             if line != b'\r\n':
                 number = self.search_number(line_as_string)
