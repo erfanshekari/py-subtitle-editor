@@ -103,7 +103,7 @@ class SRTparser(BaseParser):
 class WEBVTTparser(BaseParser):
     def __init__(self, input:IOHandler):
         super(WEBVTTparser, self).__init__(input)
-        for first_line in self.file_as_bytes:
+        for first_line in self.io.io:
             if 'WEBVTT' not in first_line.decode():
                 raise InvaidWEBVTTFile()
             break
