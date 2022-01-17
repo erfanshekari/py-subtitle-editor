@@ -25,7 +25,7 @@ class BaseParser:
                 time = self.search_time(line_as_string)
                 if time:
                     self.ary.append({})
-                    self.ary[self.block_id]['timetrack'] = time
+                    self.ary[self.block_id]['timetrack'] = [value.strip() for value in time]
                     self.block_id += 1
                     self.expect_target = 'content'
                 if self.expect_target == 'content' and not time and not number:
@@ -72,7 +72,6 @@ class BaseParser:
             for index, obj in enumerate(self.ary):
                 if obj.get('timetrack', None):
                     """
-
                         Block Example:
                         {
                             "id": "1",
