@@ -1,5 +1,6 @@
 import os
-from .parsers import (
+from typing import NoReturn, Union, List
+from .parser import (
     WEBVTTparser,
     SRTparser
 )
@@ -39,10 +40,43 @@ class SubtitleEditor:
     def edit_block(self, id=None, timetrack=None, content=None) -> dict:
         if not id: return
         if timetrack:
-            self.blocks[id - 1]['time'] = timetrack
+            self.blocks[id - 1]['timetrack'] = timetrack
         if content:
             self.blocks[id - 1]['content'] = content
         return self.get_block_by_id(id)
+
+
+    def add_block(self, id:Union[str, int], timetrack:List[str], content:str) -> dict:
+        new_blocks = []
+        for block in self.blocks:
+            if int(block['id']) < int(id):
+                new_blocks.append(block)
+            if int(block['id']) >= int(id):
+                new_blocks.append({
+                    'id': int(block['id']) + 1,
+                    'timetrack': block['timetrack'],
+                    'content': block['content']
+
+                })
+        add_block = {'id': id, 'timetrack': timetrack, 'content': content}
+        self.blocks.append(add_block)
+        self.blocks.sort(key=lambda T: int(T['id']))
+        add_block['id'] += 1
+        return add_block
+
+    def remove_block(self, id) -> NoReturn:
+        before = []
+        after = []
+        for block in self.blocks:
+            if int(block['id']) < int(id):
+                before.append(block)
+            if int(block['id']) > int(id):
+                after.append({
+                    'id': int(block['id']) - 1,
+                    'timetrack': block['timetrack'],
+                    'content': block['content']
+                })
+        self.blocks = before + after
     
     def blocks_to_webvtt(self, blocks) -> str:
         webvtt_string = 'WEBVTT\n\n'
