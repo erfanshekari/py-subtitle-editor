@@ -18,7 +18,7 @@ subtitle.as_objects # subtitle timeline as block objects
 
 ~~~py
 subtitle.webvtt_as_bytes # webvtt file as bytes
-subtitle.save_webvtt("outpath.webvtt")
+subtitle.save_webvtt("outpath.vtt")
 # or
 subtitle.srt_as_bytes # srt file as bytes
 subtitle.save_srt("outpath.srt")
